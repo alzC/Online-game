@@ -1,0 +1,23 @@
+.board {
+	background-color: gainsboro;
+}
+
+.cell {
+	border: 1px solid;
+	font-size: 5rem;
+	height: 150px;
+	text-align: center;
+	width: 150px;
+}
+
+.cell:hover {
+	cursor: pointer;
+	background-color: rgb(192, 191, 191);
+}
+.cell:actvive {
+	cursor: pointer;
+	background-color: rgb(192, 191, 191);
+}
+.win-cell {
+	background-color: greenyellow !important;
+}

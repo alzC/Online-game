@@ -25,3 +25,33 @@ app.get("/games/tic-tac-toe", (req, res) => {
 http.listen(port, () => {
     console.log(`listening on http://localhost:${port}/`);
 })
+
+let rooms = [];
+
+io.on('connection', (socket) => {
+    console.log(`[connection] ${socket.id}`);
+
+    socket.on('playerData', (player) => {
+        console.log(`[playerData] ${player.username}`);
+        let room = null;
+
+        if (!player.roomId) {
+            room = createRoom(player);
+            console.log(`[create room]  - ${room.id} - ${player.username}`);
+        }
+    })
+});
+
+function createRoom(player) {
+    const room = { id: roomId(), players: [] };
+
+    player.roomId = room.id;
+    room.players.push(player);
+    rooms.push(room);
+
+    return room;
+}
+
+function roomId(){
+    return Math.random().toString(36).substr(2, 9);
+}
